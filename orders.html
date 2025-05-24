@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Orders - Pula Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body { background: #181f23; color: #f2f2f2; }
+    .order-history-container { max-width: 800px; margin: 2rem auto; background: #23292e; border-radius: 8px; box-shadow: 0 2px 8px #0003; padding: 2rem; }
+    .order-card { border: 1px solid #333; border-radius: 8px; margin-bottom: 1.5rem; padding: 1rem 1.5rem; background: #263238; color: #f2f2f2; }
+    .order-card h3 { margin-top: 0; }
+    .order-items { margin: 0.5rem 0 1rem 0; }
+    .order-items li { margin-bottom: 0.3rem; }
+    .order-status { font-weight: bold; }
+    .order-status.delivered { color: #4caf50; }
+    .order-status.inprogress { color: #00bcd4; }
+    .order-status.processing { color: #ff9800; }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo" data-aos="fade-right">
+        <span class="logo-text">PULA STORE</span>
+        <div class="logo-glow"></div>
+      </div>
+      <ul class="nav-links" data-aos="fade-left">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="Pula Store Sneakers page .html" class="nav-link">Shop</a></li>
+        <li><a href="cart.html" class="nav-link">Cart <span class="cart-count">0</span></a></li>
+        <li><a href="#" class="nav-link" id="profileLink">Profile</a></li>
+        <li><a href="#" class="nav-link" id="loginLink">Login</a></li>
+        <li><a href="register.html" class="nav-link">Register</a></li>
+        <li><a href="Categories.html" class="nav-link">Categories</a></li>
+        <li><a href="orders.html" class="nav-link active">My Orders</a></li>
+        <li><a href="Ecommerce- About page .html" class="nav-link">About</a></li>
+      </ul>
+      <div class="nav-toggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="orders-main" style="padding-top: 120px; min-height: 100vh;">
+    <div class="order-history-container">
+      <h1 class="glitch-text">My Orders</h1>
+      <div id="ordersList"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About Pula Store</h4>
+        <p>Redefining the future of style and unparalleled boutique experience.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Pula Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    function getStatusText(order) {
+      if (order.statusIndex === undefined) return 'Unknown';
+      if (order.statusIndex === 3) return '<span class="order-status delivered">Delivered</span>';
+      if (order.statusIndex === 2) return '<span class="order-status inprogress">Arriving Soon</span>';
+      if (order.statusIndex === 1) return '<span class="order-status inprogress">In Transit</span>';
+      return '<span class="order-status processing">Processing</span>';
+    }
+    function getPaymentText(method) {
+      if (method === 'card') return 'Credit/Debit Card';
+      if (method === 'mobile') return 'Mobile Money';
+      if (method === 'crypto') return 'Crypto';
+      if (method === 'paypal') return 'PayPal';
+      return method;
+    }
+    function renderOrders() {
+      const orders = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+      const container = document.getElementById('ordersList');
+      if (!orders.length) {
+        container.innerHTML = '<p style="color:#888;">You have no orders yet.</p>';
+        return;
+      }
+      container.innerHTML = orders.reverse().map(order => `
+        <div class="order-card">
+          <h3>Order #${order.id}</h3>
+          <div><b>Date:</b> ${new Date(order.createdAt).toLocaleString()}</div>
+          <div><b>Destination:</b> ${order.destination}</div>
+          <div><b>Payment Method:</b> ${getPaymentText(order.paymentMethod)}</div>
+          <div><b>Status:</b> ${getStatusText(order)}</div>
+          <ul class="order-items">
+            ${order.items.map(item => `<li>${item.name} - <span style='color:#007bff;'>${item.price}</span></li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+    renderOrders();
+  </script>
+</body>
+</html> 

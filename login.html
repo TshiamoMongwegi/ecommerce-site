@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pula Store - Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo" data-aos="fade-right">
+        <span class="logo-text">PULA STORE</span>
+        <div class="logo-glow"></div>
+      </div>
+      <ul class="nav-links" data-aos="fade-left">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="Pula Store Sneakers page .html" class="nav-link">Shop</a></li>
+        <li><a href="cart.html" class="nav-link">Cart <span class="cart-count">0</span></a></li>
+        <li><a href="profile.html" class="nav-link" id="profileLink">Profile</a></li>
+        <li><a href="#" class="nav-link" id="loginLink">Login</a></li>
+        <li><a href="register.html" class="nav-link">Register</a></li>
+        <li><a href="Categories.html" class="nav-link">Categories</a></li>
+        <li><a href="Ecommerce- About page .html" class="nav-link">About</a></li>
+      </ul>
+      <div class="nav-toggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="login-main" style="padding-top: 120px; min-height: 100vh;">
+    <section class="login-hero" data-aos="fade-up">
+      <h1 class="glitch-text">Sign In</h1>
+      <p class="subtitle">Access your PULA STORE account</p>
+    </section>
+    <section class="login-form-section">
+      <form class="login-form" id="loginForm" style="max-width: 400px; margin: 2rem auto; background:rgba(255,255,255,0.03); padding:2rem 2.5rem; border-radius:18px; box-shadow:0 2px 24px rgba(0,247,255,0.08);">
+        <div id="error-message" style="display: none; color: #ff4444; margin-bottom: 1rem; padding: 0.5rem; background: rgba(255,68,68,0.1); border-radius: 4px;"></div>
+        <div style="margin-bottom:1.5rem;">
+          <label for="email" style="display:block; margin-bottom:0.5rem; color:var(--primary-color); font-weight:600;">Email</label>
+          <input type="email" id="email" name="email" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <label for="password" style="display:block; margin-bottom:0.5rem; color:var(--primary-color); font-weight:600;">Password</label>
+          <input type="password" id="password" name="password" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+        </div>
+        <button type="submit" class="btn primary-btn" style="width:100%;">Login</button>
+        <p style="margin-top:1rem; color:var(--text-gray); text-align:center;">Don't have an account? <a href="register.html" style="color:var(--primary-color);">Register</a></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About Pula Store</h4>
+        <p>Redefining the future of style and unparalleled boutique experience.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Pula Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const errorDiv = document.getElementById('error-message');
+      errorDiv.style.display = 'none';
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+        const user = userSystem.login(email, password);
+        if (user) {
+          window.location.href = 'profile.html';
+        } else {
+          throw new Error('Invalid email or password');
+        }
+      } catch (error) {
+        errorDiv.textContent = error.message;
+        errorDiv.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html> 

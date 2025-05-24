@@ -1,0 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color:white;
+}
+
+header {
+  background-color:white;
+  color: black;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+nav {
+  background-color: #222;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  
+}
+
+.hero {
+  background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#111;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+  text-decoration: underline;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.products-section {
+  padding: 2rem;
+  color: rgb(0, 0, 0);
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.product {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.product h3 {
+  margin-bottom: 0.5rem;
+}
+
+.product p {
+  color: green;
+  margin-bottom: 1rem;
+}
+
+.product button {
+  padding: 0.5rem 1rem;
+  background-color: #222;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.product button:hover {
+  background-color: #444;
+}
+
+footer {
+  background-color: #111;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.contact-information-about-us ul {
+    list-style-type: disc; /* you can use circle, square, or none */
+    padding-left: 4rem;
+  }
+  
+  .contact-information-about-us li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .contact-information-about-us p {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .contact-information-about-us h2{
+    text-align: center;
+    text-decoration: underline;
+    padding: 12px 12px;
+    text-transform: uppercase;
+  }
+
+.style{
+  height: 100px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#111;
+  margin-bottom: -150px;
+}
+.style h4 {
+height: 400px;
+font-family: monospace;
+color: #444;
+
+}
+.ul-nav{
+  display: inline-block;
+  position: relative;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background-color: #111;
+  
+ 
+}
+
+.ul-nav a {
+  display: block;
+  padding: 20px 25px;
+  font-size: 15px;
+  text-align: center;
+  color:#fff ;
+}
+.ul-nav li {
+  display: inline-block;
+  position: relative;
+}
+.ul-nav li .dropdown li {
+  display: block;
+ 
+}
+.ul-nav li .dropdown {
+  width: 100%;
+  position: absolute;
+  z-index: 999;
+  display: none;
+  background: #22438c;
+}
+ .ul-nav a:hover {
+  background-color: #112c66;
+ }
+ .ul-nav li:hover .dropdown{
+  display: block;
+ }
+ 
+ .nav-container{
+  text-align: center;
+
+ }

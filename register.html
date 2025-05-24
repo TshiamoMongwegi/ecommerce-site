@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pula Store - Register</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="logo" data-aos="fade-right">
+                <span class="logo-text">PULA STORE</span>
+                <div class="logo-glow"></div>
+            </div>
+            <ul class="nav-links" data-aos="fade-left">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="Pula Store Sneakers page .html" class="nav-link">Shop</a></li>
+                <li><a href="cart.html" class="nav-link">Cart <span class="cart-count">0</span></a></li>
+                <li><a href="profile.html" class="nav-link" id="profileLink">Profile</a></li>
+                <li><a href="#" class="nav-link" id="loginLink">Login</a></li>
+                <li><a href="register.html" class="nav-link active">Register</a></li>
+                <li><a href="Categories.html" class="nav-link">Categories</a></li>
+                <li><a href="Ecommerce- About page .html" class="nav-link">About</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="register-main" style="padding-top: 120px; min-height: 100vh;">
+        <section class="register-hero" data-aos="fade-up">
+            <h1 class="glitch-text">Create Account</h1>
+            <p class="subtitle">Join Pula Store for a futuristic shopping experience</p>
+        </section>
+        <section class="register-form-section">
+            <form class="register-form" id="registerForm" style="max-width: 500px; margin: 2rem auto; background:rgba(255,255,255,0.03); padding:2rem 2.5rem; border-radius:18px; box-shadow:0 2px 24px rgba(0,247,255,0.08);">
+                <div id="error-message" style="display: none; color: #ff4444; margin-bottom: 1rem; padding: 0.5rem; background: rgba(255,68,68,0.1); border-radius: 4px;"></div>
+                <div style="margin-bottom:1rem;">
+                    <label for="customerid" style="color:var(--primary-color); font-weight:600;">Customer ID</label>
+                    <input type="text" id="customerid" name="customerid" placeholder="customerid" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                </div>
+                <div style="margin-bottom:1rem; display:flex; gap:1rem;">
+                    <div style="flex:1;">
+                        <label for="firstname" style="color:var(--primary-color); font-weight:600;">First Name</label>
+                        <input type="text" id="firstname" name="firstname" placeholder="firstname" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                    </div>
+                    <div style="flex:1;">
+                        <label for="surname" style="color:var(--primary-color); font-weight:600;">Surname</label>
+                        <input type="text" id="surname" name="surname" placeholder="surname" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                    </div>
+                </div>
+                <div style="margin-bottom:1rem;">
+                    <label for="gender" style="color:var(--primary-color); font-weight:600;">Gender</label>
+                    <select id="gender" name="gender" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                        <option value="O">Select</option>
+                        <option value="F">Female</option>
+                        <option value="M">Male</option>
+                    </select>
+                </div>
+                <div style="margin-bottom:1rem;">
+                    <label style="color:var(--primary-color); font-weight:600;">Marital Status</label><br>
+                    <label><input type="radio" name="maritalstatus" value="s"> Single</label>
+                    <label><input type="radio" name="maritalstatus" value="M"> Married</label>
+                    <label><input type="radio" name="maritalstatus" value="w"> Widowed</label>
+                    <label><input type="radio" name="maritalstatus" value="d"> Divorced</label>
+                </div>
+                <div style="margin-bottom:1rem; display:flex; gap:1rem;">
+                    <div style="flex:1;">
+                        <label for="dob" style="color:var(--primary-color); font-weight:600;">DOB</label>
+                        <input type="date" id="dob" name="dob" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                    </div>
+                    <div style="flex:1;">
+                        <label for="omang" style="color:var(--primary-color); font-weight:600;">Omang/ID</label>
+                        <input type="number" id="omang" name="omang" required placeholder="999999999" style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                    </div>
+                </div>
+                <div style="margin-bottom:1rem;">
+                    <label for="email" style="color:var(--primary-color); font-weight:600;">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="abd@gmail.com" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                </div>
+                <div style="margin-bottom:1rem;">
+                    <label for="password" style="color:var(--primary-color); font-weight:600;">Password</label>
+                    <input type="password" id="password" name="password" placeholder="password" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                </div>
+                <div style="margin-bottom:1rem;">
+                    <label for="country" style="color:var(--primary-color); font-weight:600;">Country</label>
+                    <select id="country" name="country" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                        <option value="">Select Country</option>
+                        <option value="BW">Botswana</option>
+                        <option value="ZA">South Africa</option>
+                        <option value="NA">Namibia</option>
+                        <option value="ZM">Zambia</option>
+                        <option value="ZW">Zimbabwe</option>
+                    </select>
+                </div>
+                <div style="margin-bottom:1rem; display:flex; gap:1rem;">
+                    <div style="flex:1;">
+                        <label for="dateregistered" style="color:var(--primary-color); font-weight:600;">Date Registered</label>
+                        <input type="date" id="dateregistered" name="dateregistered" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                    </div>
+                    <div style="flex:1;">
+                        <label for="Timeregsitered" style="color:var(--primary-color); font-weight:600;">Time Registered</label>
+                        <input type="time" id="Timeregsitered" name="Timeregsitered" required style="width:100%; padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--primary-color); background:rgba(0,0,0,0.2); color:#fff;">
+                    </div>
+                </div>
+                <button type="submit" class="btn primary-btn" style="width:100%;">Register</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Pula Store</h4>
+                <p>Redefining the future of style and unparalleled boutique experience.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Pula Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.style.display = 'none';
+            
+            try {
+                // Get form data
+                const formData = {
+                    customerId: document.getElementById('customerid').value,
+                    firstName: document.getElementById('firstname').value,
+                    surname: document.getElementById('surname').value,
+                    gender: document.getElementById('gender').value,
+                    maritalStatus: document.querySelector('input[name="maritalstatus"]:checked')?.value,
+                    dob: document.getElementById('dob').value,
+                    omang: document.getElementById('omang').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value,
+                    country: document.getElementById('country').value,
+                    dateRegistered: document.getElementById('dateregistered').value,
+                    timeRegistered: document.getElementById('Timeregsitered').value
+                };
+
+                // Register user
+                userSystem.register(formData);
+                
+                // Auto login after registration
+                userSystem.login(formData.email, formData.password);
+                
+                // Redirect to profile page
+                window.location.href = 'profile.html';
+                
+            } catch (error) {
+                errorDiv.textContent = error.message;
+                errorDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

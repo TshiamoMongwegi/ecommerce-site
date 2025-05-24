@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pula Store - Cart</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo" data-aos="fade-right">
+        <span class="logo-text">PULA STORE</span>
+        <div class="logo-glow"></div>
+      </div>
+      <ul class="nav-links" data-aos="fade-left">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="Pula Store Sneakers page .html" class="nav-link">Shop</a></li>
+        <li><a href="cart.html" class="nav-link active">Cart <span class="cart-count">0</span></a></li>
+        <li><a href="#" class="nav-link" id="profileLink">Profile</a></li>
+        <li><a href="#" class="nav-link" id="loginLink">Login</a></li>
+        <li><a href="register.html" class="nav-link">Register</a></li>
+        <li><a href="Categories.html" class="nav-link">Categories</a></li>
+        <li><a href="Ecommerce- About page .html" class="nav-link">About</a></li>
+      </ul>
+      <div class="nav-toggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="cart-main" style="padding-top: 120px; min-height: 100vh;">
+    <section class="cart-hero" data-aos="fade-up">
+      <h1 class="glitch-text">Your Cart</h1>
+      <p class="subtitle">Review your selected items and proceed to checkout.</p>
+    </section>
+    <section class="cart-listing">
+      <div class="cart-items" style="min-height: 200px;">
+        <!-- Cart items will be dynamically loaded by JS in the future -->
+        <div class="cart-placeholder" style="text-align:center; color:var(--text-gray); margin-top:2rem;">
+          <i class="fas fa-shopping-cart" style="font-size:3rem; color:var(--primary-color);"></i>
+          <p>Your cart is currently empty.</p>
+        </div>
+      </div>
+      <button id="proceedToPaymentBtn" class="btn primary-btn" style="margin:2rem auto 0; display:none;">Proceed to Payment</button>
+    </section>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal" style="display:none;">
+      <div class="modal-content" style="max-width:400px;">
+        <span class="close-modal" id="closePaymentModal">&times;</span>
+        <h2>Payment Details</h2>
+        <form id="paymentForm">
+          <label>Choose Payment Method:</label><br>
+          <select id="paymentMethod" required style="width:100%;margin-bottom:1rem;">
+            <option value="card">Credit/Debit Card</option>
+            <option value="mobile">Mobile Money</option>
+            <option value="crypto">Crypto</option>
+            <option value="paypal">PayPal</option>
+          </select>
+          <div id="paymentFields"></div>
+          <button type="submit" class="btn primary-btn" style="width:100%;margin-top:1rem;">Pay Now</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About Pula Store</h4>
+        <p>Redefining the future of style and unparalleled boutique experience.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Pula Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Show Proceed to Payment if cart has items
+    function updatePaymentButton() {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      document.getElementById('proceedToPaymentBtn').style.display = cart.length ? 'block' : 'none';
+    }
+    updatePaymentButton();
+    // Payment modal logic
+    const modal = document.getElementById('paymentModal');
+    const closeModal = document.getElementById('closePaymentModal');
+    document.getElementById('proceedToPaymentBtn').onclick = function() {
+      modal.style.display = 'block';
+      renderPaymentFields();
+    };
+    closeModal.onclick = function() { modal.style.display = 'none'; };
+    window.onclick = function(e) { if (e.target === modal) modal.style.display = 'none'; };
+    // Dynamic payment fields
+    document.getElementById('paymentMethod').onchange = renderPaymentFields;
+    function renderPaymentFields() {
+      const method = document.getElementById('paymentMethod').value;
+      let html = '';
+      if (method === 'card') {
+        html = `<input type='text' placeholder='Card Number' required style='width:100%;margin-bottom:0.5rem;'/><input type='text' placeholder='Expiry (MM/YY)' required style='width:100%;margin-bottom:0.5rem;'/><input type='text' placeholder='CVV' required style='width:100%;margin-bottom:0.5rem;'/>`;
+      } else if (method === 'mobile') {
+        html = `<input type='text' placeholder='Mobile Number' required style='width:100%;margin-bottom:0.5rem;'/><select required style='width:100%;margin-bottom:0.5rem;'><option>Orange Money</option><option>Mascom MyZaka</option><option>BTC Smega</option></select>`;
+      } else if (method === 'crypto') {
+        html = `<select required style='width:100%;margin-bottom:0.5rem;'><option>Bitcoin</option><option>Ethereum</option></select><input type='text' placeholder='Wallet Address' required style='width:100%;margin-bottom:0.5rem;'/>`;
+      } else if (method === 'paypal') {
+        html = `<input type='email' placeholder='PayPal Email' required style='width:100%;margin-bottom:0.5rem;'/>`;
+      }
+      document.getElementById('paymentFields').innerHTML = html;
+    }
+    // Payment form submit
+    document.getElementById('paymentForm').onsubmit = function(e) {
+      e.preventDefault();
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      if (!cart.length) return;
+      const paymentMethod = document.getElementById('paymentMethod').value;
+      // Create order and save to localStorage
+      const order = {
+        id: Math.floor(Math.random()*1000000),
+        items: cart,
+        destination: 'Gaborone, Botswana',
+        createdAt: Date.now(),
+        statusIndex: 0,
+        paymentMethod: paymentMethod
+      };
+      // Save to orderHistory
+      let orderHistory = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+      orderHistory.push(order);
+      localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+      localStorage.setItem('order', JSON.stringify(order));
+      localStorage.removeItem('cart');
+      modal.style.display = 'none';
+      window.location.href = 'fast.html';
+    };
+    // Update button if cart changes
+    window.addEventListener('storage', updatePaymentButton);
+  </script>
+</body>
+</html> 

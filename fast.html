@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lightning Fast Delivery - Pula Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { background: #181f23; color: #f2f2f2; }
+    .order-summary { background: #23292e; color: #f2f2f2; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    .order-success { background: #1b5e20; color: #fff; border: 1px solid #4caf50; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    .order-status { background: #263238; color: #fff; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    .order-summary ul, .order-status ul { margin: 0; padding-left: 1.2rem; }
+    .order-summary li, .order-status li { margin-bottom: 0.3rem; }
+    .track-step { margin-bottom: 0.5rem; }
+    .track-step.active { color: #00bcd4; font-weight: bold; }
+    .track-step.done { color: #4caf50; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="index.html" class="logo-text">PULA STORE</a>
+    </nav>
+  </header>
+  <main style="padding: 2rem; padding-top: 5rem; max-width: 600px; margin: 0 auto;">
+    <h1 style="margin-bottom: 1.5rem;">Lightning Fast Delivery</h1>
+    <p style="font-size:1.2rem; margin-bottom: 2rem;">Experience the future of shipping with our quantum delivery system. Your orders arrive almost instantly, no matter where you are!</p>
+    <ul>
+      <li>Quantum-powered logistics</li>
+      <li>Real-time tracking</li>
+      <li>Zero wait time for most products</li>
+    </ul>
+    <div class="order-summary" id="orderSummary"></div>
+    <button id="payNowBtn" class="btn primary-btn" style="margin-bottom:1rem;">Pay & Receive Instantly</button>
+    <div id="orderStatus" class="order-status" style="display:none;"></div>
+    <div id="orderSuccess" class="order-success" style="display:none;"></div>
+    <a href="index.html" class="btn primary-btn">Back to Home</a>
+  </main>
+  <script>
+    // Mock destination for demo
+    const mockDestination = 'Gaborone, Botswana';
+    // Order status steps
+    const statusSteps = [
+      'Processing',
+      'In Transit',
+      'Arriving Soon',
+      'Delivered'
+    ];
+    // Helper: get/set order in localStorage
+    function getOrder() {
+      return JSON.parse(localStorage.getItem('order') || 'null');
+    }
+    function setOrder(order) {
+      localStorage.setItem('order', JSON.stringify(order));
+    }
+    function clearOrder() {
+      localStorage.removeItem('order');
+    }
+    // Render cart summary if no order, else show order status
+    function renderCartOrOrder() {
+      const order = getOrder();
+      const summaryDiv = document.getElementById('orderSummary');
+      const payBtn = document.getElementById('payNowBtn');
+      const statusDiv = document.getElementById('orderStatus');
+      const successDiv = document.getElementById('orderSuccess');
+      if (order) {
+        // Hide cart, show order status
+        payBtn.style.display = 'none';
+        statusDiv.style.display = 'block';
+        summaryDiv.innerHTML = `<b>Order #${order.id}</b><ul>` +
+          order.items.map(item => `<li>${item.name} - <span style='color:#007bff;'>${item.price}</span></li>`).join('') +
+          `</ul><b>Destination:</b> ${order.destination}<br><b>Order Time:</b> ${new Date(order.createdAt).toLocaleString()}`;
+        renderOrderStatus(order);
+      } else {
+        // Show cart summary
+        statusDiv.style.display = 'none';
+        successDiv.style.display = 'none';
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        if (cart.length === 0) {
+          summaryDiv.innerHTML = '<b>Your cart is empty. Add products to your cart to try Lightning Fast delivery!</b>';
+          payBtn.disabled = true;
+        } else {
+          let total = 0;
+          summaryDiv.innerHTML = '<b>Your Cart:</b><ul>' + cart.map(item => {
+            const price = parseFloat(item.price.replace(/[^\d.]/g, ''));
+            total += price;
+            return `<li>${item.name} - <span style=\"color:#007bff;\">${item.price}</span></li>`;
+          }).join('') + `</ul><b>Total: BWP ${total.toFixed(2)}</b>`;
+          payBtn.disabled = false;
+        }
+        payBtn.style.display = 'inline-block';
+      }
+    }
+    // Render order status/tracking
+    function renderOrderStatus(order) {
+      const statusDiv = document.getElementById('orderStatus');
+      let stepsHtml = '';
+      statusSteps.forEach((step, idx) => {
+        let cls = '';
+        if (idx < order.statusIndex) cls = 'track-step done';
+        else if (idx === order.statusIndex) cls = 'track-step active';
+        else cls = 'track-step';
+        stepsHtml += `<div class='${cls}'>${step}</div>`;
+      });
+      statusDiv.innerHTML = `<b>Order Status:</b><br>${stepsHtml}<br><b>Destination:</b> ${order.destination}<br><b>Current Location:</b> ${order.statusIndex < statusSteps.length-1 ? 'On the way' : order.destination}`;
+      // If delivered, show success and clear order after a delay
+      if (order.statusIndex === statusSteps.length-1) {
+        document.getElementById('orderSuccess').style.display = 'block';
+        document.getElementById('orderSuccess').innerHTML = `<b>Order Delivered Instantly!</b><br>Your order has arrived at <b>${order.destination}</b>.<br>Thank you for shopping with Pula Store!`;
+        setTimeout(() => {
+          clearOrder();
+          renderCartOrOrder();
+        }, 5000);
+      }
+    }
+    // Simulate order status progression
+    function simulateOrderProgress(order) {
+      if (order.statusIndex < statusSteps.length-1) {
+        setTimeout(() => {
+          order.statusIndex++;
+          setOrder(order);
+          renderCartOrOrder();
+          simulateOrderProgress(order);
+        }, 2000);
+      }
+    }
+    // Pay button logic
+    document.getElementById('payNowBtn').onclick = function() {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      if (cart.length === 0) return;
+      // Create order
+      const order = {
+        id: Math.floor(Math.random()*1000000),
+        items: cart,
+        destination: mockDestination,
+        createdAt: Date.now(),
+        statusIndex: 0
+      };
+      setOrder(order);
+      localStorage.removeItem('cart');
+      renderCartOrOrder();
+      simulateOrderProgress(order);
+    };
+    // On load, show cart or order
+    renderCartOrOrder();
+    // If order exists, continue tracking
+    const existingOrder = getOrder();
+    if (existingOrder && existingOrder.statusIndex < statusSteps.length-1) {
+      simulateOrderProgress(existingOrder);
+    }
+  </script>
+</body>
+</html> 

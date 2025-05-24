@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pula Store - Payment</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    .payment-container {
+      max-width: 420px;
+      margin: 120px auto 2rem auto;
+      background: rgba(30,30,60,0.98);
+      border-radius: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      padding: 2.5rem 2rem 2rem 2rem;
+      color: #fff;
+      position: relative;
+    }
+    .payment-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(45deg, #00f7ff, #7000ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .payment-form label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      color: #00f7ff;
+    }
+    .payment-form input {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border-radius: 1rem;
+      border: none;
+      margin-bottom: 1.2rem;
+      background: #181828;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    .payment-form input:focus {
+      box-shadow: 0 0 0 2px #00f7ff;
+    }
+    .pay-btn-main {
+      width: 100%;
+      padding: 0.9rem 0;
+      border-radius: 2rem;
+      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
+      color: #181818;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(0,255,255,0.12);
+    }
+    .pay-btn-main:hover {
+      background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+      color: #fff;
+      transform: scale(1.04);
+    }
+    .cart-summary {
+      background: rgba(255,255,255,0.04);
+      border-radius: 1rem;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .cart-summary strong {
+      color: #00f7ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo" data-aos="fade-right">
+        <span class="logo-text">PULA STORE</span>
+        <div class="logo-glow"></div>
+      </div>
+      <ul class="nav-links" data-aos="fade-left">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="Pula Store Sneakers page .html" class="nav-link">Shop</a></li>
+        <li><a href="cart.html" class="nav-link">Cart <span class="cart-count">0</span></a></li>
+        <li><a href="login.html" class="nav-link">Login</a></li>
+        <li><a href="register.html" class="nav-link">Register</a></li>
+        <li><a href="Categories.html" class="nav-link">Categories</a></li>
+        <li><a href="Ecommerce- About page .html" class="nav-link">About</a></li>
+      </ul>
+      <div class="nav-toggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+  <main style="padding-top: 120px; min-height: 100vh;">
+    <div class="payment-container" data-aos="fade-up">
+      <h2>Payment</h2>
+      <div class="cart-summary" id="cart-summary">
+        <!-- Cart total will be injected here -->
+      </div>
+      <form class="payment-form" id="payment-form">
+        <label for="name">Name on Card</label>
+        <input type="text" id="name" name="name" required placeholder="e.g. John Doe" />
+        <label for="card">Card Number</label>
+        <input type="text" id="card" name="card" required maxlength="19" placeholder="1234 5678 9012 3456" />
+        <div style="display: flex; gap: 1rem;">
+          <div style="flex:1;">
+            <label for="expiry">Expiry</label>
+            <input type="text" id="expiry" name="expiry" required maxlength="5" placeholder="MM/YY" />
+          </div>
+          <div style="flex:1;">
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" name="cvv" required maxlength="4" placeholder="123" />
+          </div>
+        </div>
+        <button type="submit" class="pay-btn-main">Pay Now</button>
+      </form>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About Pula Store</h4>
+        <p>Redefining the future of style and unparalleled boutique experience.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Pula Store. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Show cart total
+    function getCartTotal() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let total = 0;
+      cart.forEach(item => {
+        // Extract numeric value from price string (e.g., 'BWP 1200')
+        const match = item.price.match(/([\d,.]+)/);
+        if (match) total += parseFloat(match[1].replace(/,/g, ''));
+      });
+      return total;
+    }
+    function updateCartSummary() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const total = getCartTotal();
+      const summary = document.getElementById('cart-summary');
+      if (cart.length === 0) {
+        summary.innerHTML = '<span style="color:#888;">Your cart is empty.</span>';
+      } else {
+        summary.innerHTML = `<strong>Cart Total:</strong> BWP ${total.toLocaleString()}`;
+      }
+    }
+    updateCartSummary();
+    // Payment form handler
+    document.getElementById('payment-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Simulate payment success
+      alert('Payment successful! Thank you for shopping with Pula Store.');
+      localStorage.removeItem('cart');
+      window.location.href = 'index.html';
+    });
+    // Update cart count in nav
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cartCount.textContent = cart.length;
+    }
+  </script>
+</body>
+</html> 

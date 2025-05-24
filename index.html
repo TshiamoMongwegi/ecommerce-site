@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pula Store - Future of Shopping</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo" data-aos="fade-right">
+        <span class="logo-text">PULA STORE</span>
+        <div class="logo-glow"></div>
+      </div>
+      <ul class="nav-links" data-aos="fade-left">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="Pula Store Sneakers page .html" class="nav-link">Shop</a></li>
+        <li><a href="cart.html" class="nav-link">Cart <span class="cart-count">0</span></a></li>
+        <li><a href="#" class="nav-link" id="profileLink">Profile</a></li>
+        <li><a href="#" class="nav-link" id="loginLink">Login</a></li>
+        <li><a href="register.html" class="nav-link">Register</a></li>
+        <li><a href="Categories.html" class="nav-link">Categories</a></li>
+        <li><a href="orders.html" class="nav-link">My Orders</a></li>
+        <li><a href="Ecommerce- About page .html" class="nav-link">About</a></li>
+      </ul>
+      <div class="nav-toggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="hero-section">
+    <div class="hero-content" data-aos="fade-up">
+      <h1 class="glitch-text">Welcome to the Future</h1>
+      <p class="subtitle">Experience shopping reimagined</p>
+      <div class="cta-buttons">
+        <a href="products.html" class="btn primary-btn">
+          <span>Explore Collection</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#featured" class="btn secondary-btn">View Featured</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-elements">
+        <div class="floating-item" data-speed="2"></div>
+        <div class="floating-item" data-speed="4"></div>
+        <div class="floating-item" data-speed="6"></div>
+      </div>
+    </div>
+  </main>
+
+  <section class="features" id="featured">
+    <a href="fast.html" class="feature-card" data-aos="zoom-in" data-feature="fast" style="text-decoration:none;color:inherit;">
+      <div class="feature-icon">
+        <i class="fas fa-rocket"></i>
+      </div>
+      <h3>Lightning Fast</h3>
+      <p>Instant delivery with our quantum shipping</p>
+    </a>
+    <a href="secure.html" class="feature-card" data-aos="zoom-in" data-aos-delay="100" data-feature="secure" style="text-decoration:none;color:inherit;">
+      <div class="feature-icon">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <h3>Secure Payment</h3>
+      <p>Advanced blockchain security</p>
+    </a>
+    <a href="ai.html" class="feature-card" data-aos="zoom-in" data-aos-delay="200" data-feature="ai" style="text-decoration:none;color:inherit;">
+      <div class="feature-icon">
+        <i class="fas fa-robot"></i>
+      </div>
+      <h3>AI Assistant</h3>
+      <p>24/7 intelligent support</p>
+    </a>
+  </section>
+
+  <!-- Feature Modal -->
+  <div id="featureModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModalBtn">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+    </div>
+  </div>
+
+  <section class="trending-products">
+    <h2 class="section-title" data-aos="fade-up">Trending Now</h2>
+    <div class="product-grid">
+      <!-- Product cards will be dynamically loaded -->
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About Pula Store</h4>
+        <p>Redefining the future of style and unparalleled boutique experience.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Pula Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Feature modal mock data
+    // (Modal code can be removed since we now use links)
+  </script>
+</body>
+</html>

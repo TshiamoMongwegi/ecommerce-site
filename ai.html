@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Assistant - Pula Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { background: #181f23; color: #f2f2f2; }
+    .chat-container { max-width: 500px; margin: 2rem auto; background: #23292e; border-radius: 8px; box-shadow: 0 2px 8px #0003; padding: 1rem; }
+    .chat-log { min-height: 200px; margin-bottom: 1rem; }
+    .chat-bubble { background: #22292f; color: #f2f2f2; border-radius: 16px; padding: 0.5rem 1rem; margin: 0.5rem 0; max-width: 80%; }
+    .chat-bubble.user { background: #0d47a1; color: #fff; margin-left: auto; }
+    .chat-bubble.ai { background: #263238; color: #fff; margin-right: auto; }
+    .chat-input-row { display: flex; gap: 0.5rem; }
+    .chat-input-row input { flex: 1; padding: 0.5rem; border-radius: 4px; border: 1px solid #444; background: #181f23; color: #f2f2f2; }
+    .chat-input-row button { padding: 0.5rem 1rem; border-radius: 4px; border: none; background: #007bff; color: #fff; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="index.html" class="logo-text">PULA STORE</a>
+    </nav>
+  </header>
+  <main style="padding-top: 2.5rem;">
+    <div class="chat-container">
+      <h1>AI Assistant</h1>
+      <div class="chat-log" id="chatLog">
+        <div class="chat-bubble ai">Hello! I am your AI shopping assistant. How can I help you today?</div>
+      </div>
+      <form id="chatForm" class="chat-input-row" autocomplete="off">
+        <input type="text" id="chatInput" placeholder="Type your message..." required />
+        <button type="submit">Send</button>
+      </form>
+      <a href="index.html" class="btn primary-btn" style="margin-top:1rem;">Back to Home</a>
+    </div>
+  </main>
+  <script>
+    const chatLog = document.getElementById('chatLog');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const aiReplies = [
+      "I'm here to help you find the best products!",
+      "Our delivery is lightning fast!",
+      "Your payment is always secure with us.",
+      "You can ask me about products, orders, or anything else!",
+      "Thank you for shopping with Pula Store!"
+    ];
+    chatForm.onsubmit = function(e) {
+      e.preventDefault();
+      const userMsg = chatInput.value.trim();
+      if (!userMsg) return;
+      chatLog.innerHTML += `<div class='chat-bubble user'>${userMsg}</div>`;
+      chatInput.value = '';
+      setTimeout(() => {
+        const aiMsg = aiReplies[Math.floor(Math.random() * aiReplies.length)];
+        chatLog.innerHTML += `<div class='chat-bubble ai'>${aiMsg}</div>`;
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }, 700);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    };
+  </script>
+</body>
+</html> 
